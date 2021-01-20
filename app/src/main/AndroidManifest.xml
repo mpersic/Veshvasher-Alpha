@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="matejpersic_orwima_proj.ferit.veshwasher">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VeshWasher">
+        <activity android:name=".UserBottomNavActivity"></activity>
+        <activity android:name=".UserMainActivity" />
+        <activity
+            android:name=".UserNavigationActivity"
+            android:label="@string/title_activity_user_navigation"
+            android:theme="@style/Theme.VeshWasher.NoActionBar" />
+        <activity android:name=".StartupActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AdminMainActivity"
+            android:label="@string/title_activity_admin_main" />
+    </application>
+
+</manifest>

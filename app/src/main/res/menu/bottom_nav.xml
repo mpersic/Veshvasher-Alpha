@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_action_laundry"
+        android:id="@+id/availableMachines"
+        android:title="Available"
+        />
+    <item
+        android:icon="@drawable/ic_action_fav"
+        android:id="@+id/usingMachines"
+        android:title="Using"
+        />
+    <item
+        android:icon="@drawable/ic_action_logout"
+        android:id="@+id/logout"
+        android:title="log-out"
+        />
+    <!-- add icons-->
+</menu>
