@@ -12,16 +12,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/addNewMachineButton"
-            android:text="Add new machine"
-            android:layout_margin="2dp"
-            android:layout_weight=".5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Button>
-    </LinearLayout>
 </LinearLayout>

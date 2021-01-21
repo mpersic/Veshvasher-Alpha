@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import java.io.Serializable
 
-class LoginFragment(dbHelper: DatabaseHelper) : Fragment() {
+class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
 
     var databaseHelper:DatabaseHelper=dbHelper
     var loginEmailEt: EditText? = null
     var loginPasswordEt: EditText? = null
     var loginButton: Button? = null
-    var dbHelper=dbHelper
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +37,10 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment() {
         loginButton!!.setOnClickListener {
             if(databaseHelper!!.userPresent(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())){
                 if(userIsAdmin()){
-                    startAdminActivity(loginEmailEt!!.text.toString(),dbHelper)
+                    startAdminActivity(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())
                 }
                 else{
-                    startUserActivity()
+                    startUserActivity(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())
                 }
             }
             else
@@ -49,18 +49,22 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment() {
             Toast.makeText(activity,"Invalid credentials!",Toast.LENGTH_SHORT).show()
         }
 
-    private fun startUserActivity() {
+    private fun startUserActivity(loginEmail:String,loginPassword:String) {
         activity?.let {
             val intent= Intent(it,UserBottomNavActivity::class.java)
+            var args:Bundle= Bundle()
+            args.putString("Email",loginEmail)
+            args.putString("Password",loginPassword)
             startActivity(intent)
         }
     }
 
-    private fun startAdminActivity(loginEmail:String,dbHelper: DatabaseHelper) {
+    private fun startAdminActivity(loginEmail:String,loginPassword:String) {
         activity?.let {
             val intent= Intent(it,AdminMainActivity::class.java)
-            intent.putExtra("loginEmail",loginEmail)
-            intent.putExtra("dbHelper",dbHelper)
+            var args:Bundle= Bundle()
+            args.putString("Email",loginEmail)
+            args.putString("Password",loginPassword)
             startActivity(intent)
         }
     }

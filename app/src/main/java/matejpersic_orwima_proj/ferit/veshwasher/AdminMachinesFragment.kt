@@ -1,6 +1,7 @@
 package matejpersic_orwima_proj.ferit.veshwasher
 
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +12,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.io.Serializable
 
-class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment() {
+class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
     private var machines: ArrayList<Machine> = arrayListOf()
-    private var dbHelper=dbHelper
+    private var databaseHelper:DatabaseHelper=dbHelper
+    var machineName:String?=""
+    var machineProgramme:String?=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,22 +30,33 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView =view.findViewById(R.id.machinesRecyclerView)
         recyclerView.layoutManager= LinearLayoutManager(context)
-        addMachines()
-        //setUpApiCall(apicall)
+        //addMachines()
+        //databaseHelper.initialValues()
+        /*machineName=arguments?.getString("machineName")
+        machineProgramme=arguments?.getString("machineProgramme")
+        if((machineName?.isNotEmpty() as Boolean)||(machineProgramme?.isNotEmpty() as Boolean)) {
+            machines.add(Machine(machineName as String, machineProgramme as String))
+        }*/
+        displayData()
         recyclerView.adapter=MachineRecyclerAdapter(machines)
     }
 
-    private fun getMachines(){
-        var db=dbHelper.readableDatabase
-        var rs=db.rawQuery("SELECT * FROM machines",null)
-        if(rs.moveToNext()){
-            Toast.makeText(context,rs.getString(1),Toast.LENGTH_SHORT).show()
+    private fun displayData(){
+        val cursor: Cursor =databaseHelper.readAllMachines()
+        if(cursor.count==0){
+            Toast.makeText(context,"no data",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            while(cursor.moveToNext()){
+                machines.add(Machine(cursor.getString(0),cursor.getString(1)))
+            }
         }
     }
 
+
     private fun addMachines() {
-        dbHelper.insertMachine("Gorenje","1","1")
-        dbHelper.insertMachine("Gorenje 5","1","1")
+        databaseHelper.insertMachine("Gorenje","1","1")
+        databaseHelper.insertMachine("Gorenje 5","1","1")
         machines.add(Machine("Gorenje 12","1"))
         machines.add(Machine("Gorenje 123","4"))
     }

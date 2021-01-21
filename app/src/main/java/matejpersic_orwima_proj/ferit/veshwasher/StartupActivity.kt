@@ -10,17 +10,6 @@ import com.google.android.material.tabs.TabLayout
 class StartupActivity : AppCompatActivity() {
     var tabLayout: TabLayout?=null
     var viewPager: ViewPager?=null
-    var pagerAdapter: LoginRegisterScreenSlidePagerAdapter?=null
-
-    var registerEmail: EditText?=null
-    var registerPassword: EditText?=null
-    var registerConfirmPassword: EditText?=null
-    var registerButton: Button?=null
-
-    var loginEmailEt:EditText?=null
-    var loginPasswordEt:EditText?=null
-    var loginButton: Button?=null
-
     lateinit var handler: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {

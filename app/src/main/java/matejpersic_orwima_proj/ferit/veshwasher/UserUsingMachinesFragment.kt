@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
-class UserUsingMachinesFragment : Fragment() {
+class UserUsingMachinesFragment(userEmail:String) : Fragment() {
+
+    private var email=userEmail
+    lateinit var userEmailTextView:TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -14,6 +18,12 @@ class UserUsingMachinesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_using_machines, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        userEmailTextView=view.findViewById(R.id.usingMachinesUser)
+        userEmailTextView.text = email
     }
 
 }

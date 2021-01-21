@@ -2,6 +2,7 @@ package matejpersic_orwima_proj.ferit.veshwasher
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.io.Serializable
@@ -34,9 +35,9 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
     fun insertMachine(name:String, programmes:String, available:String){
         val db: SQLiteDatabase=writableDatabase
         val values: ContentValues= ContentValues()
-        values.put("available",available)
         values.put("name",name)
         values.put("programmes",programmes)
+        values.put("available",available)
         db.insert("machines",null,values)
         db.close()
     }
@@ -53,4 +54,52 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         TODO("Not yet implemented")
     }
+
+    fun initialValues() {
+        insertMachine("Gorenje 1","1, 2","1")
+        insertMachine("Gorenje 2","1","0")
+        insertMachine("Gorenje 3","2","1")
+        insertMachine("Gorenje 4","1,2","1")
+        insertUserData("plenart@gmail.com","pero123")
+        insertIsUsing("Gorenje 2","plenart@gmail.com")
+    }
+
+    private fun insertIsUsing(machine:String, user:String) {
+        val db: SQLiteDatabase=writableDatabase
+        val values: ContentValues= ContentValues()
+        values.put("machineID",machine)
+        values.put("userID",user)
+        db.insert("isUsing",null,values)
+        db.close()
+    }
+
+     fun readAllMachines(): Cursor {
+        val query:String="SELECT * FROM machines"
+         val db:SQLiteDatabase=readableDatabase
+         var cursor:Cursor?=null
+         cursor=db.rawQuery(query,null)
+         return cursor
+    }
+
+    fun clearAll() {
+        clearAllMachines()
+    }
+
+    private fun clearAllMachines() {
+        TODO("Not yet implemented")
+    }
+
+    fun readAllAvailableMachines(): Cursor {
+        val available:String="1"
+        val query:String="SELECT * FROM machines WHERE available=$available"
+        val db:SQLiteDatabase=readableDatabase
+        var cursor:Cursor?=null
+        cursor=db.rawQuery(query,null)
+        return cursor
+
+    }
+    /* private fun readAllUserMachines():Cursor{
+         //TODO
+         return null
+     }*/
 }

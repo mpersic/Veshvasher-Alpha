@@ -46,7 +46,6 @@ class RegistrationFragment(dbHelper: DatabaseHelper) : Fragment() {
     private fun startUserActivity() {
         activity?.let {
             val intent=Intent(it,UserBottomNavActivity::class.java)
-            intent.putExtra("Object",databaseHelper)
             startActivity(intent)
         }
     }
@@ -54,7 +53,7 @@ class RegistrationFragment(dbHelper: DatabaseHelper) : Fragment() {
     private fun startAdminActivity() {
         activity?.let {
             val intent= Intent(it,AdminMainActivity::class.java)
-            intent.putExtra("Object",databaseHelper)
+                    //  intent.putExtra("Object",databaseHelper)
             startActivity(intent)
         }
     }
