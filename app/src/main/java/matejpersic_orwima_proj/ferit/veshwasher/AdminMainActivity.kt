@@ -1,34 +1,22 @@
 package matejpersic_orwima_proj.ferit.veshwasher
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import java.io.Serializable
 
-class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
+class AdminMainActivity : AppCompatActivity(),AdminFragmentCommunicator {
     var tabLayout: TabLayout?=null
     lateinit var viewPager: ViewPager
     lateinit var adapter:AdminPagerAdapter
-    lateinit var userEmail:String
-    lateinit var userPassword:String
     lateinit var handler: DatabaseHelper
-    var machinesFragment:AdminMachinesFragment?=null
+    lateinit var machinesFragment:AdminMachinesFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
-        var bundle=intent.extras
         handler= DatabaseHelper(this)
-        if (bundle != null) {
-            userEmail= bundle.getString("Email").toString()
-            userPassword=bundle.getString("Password").toString()
-            if(!handler.userPresent(userEmail,userPassword)){
-                handler.insertUserData(userEmail,userPassword)
-            }
-        }
         initializeViews()
+        //handler.initialValues()
         setUpPager(handler)
     }
     private fun setUpPager(handler:DatabaseHelper) {
@@ -54,23 +42,10 @@ class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
     }
 
     override fun onButtonClicked(machineName:String,machineProgramme:String) {
-        //viewPager.currentItem =0
+        viewPager.currentItem =0
         machinesFragment=adapter.getMachineFragment(handler)
-        machinesFragment!!.displayMachine(machineName,machineProgramme)
+        machinesFragment.displayMachine(machineName,machineProgramme)
     }
 
-
-    //,fragmentcommunicator
-    /*override fun passNewMachine(machine: Machine) {
-        val bundle=Bundle()
-        bundle.putString("machineName",machine.name)
-        bundle.putString("machineProgramme",machine.programme)
-        val transaction=this.supportFragmentManager.beginTransaction()
-        val fragmentAdminMachinesFragment=AdminMachinesFragment(handler)
-        fragmentAdminMachinesFragment.arguments=bundle
-
-        transaction.replace(R.id.AdminViewPager,fragmentAdminMachinesFragment)
-        transaction.commit()
-    }*/
 
 }

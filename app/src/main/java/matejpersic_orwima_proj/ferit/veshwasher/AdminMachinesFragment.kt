@@ -52,7 +52,7 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
     fun displayMachine(Name:String,Program:String) {
         databaseHelper.insertMachine(Name,Program,"1")
         displayData()
-        recyclerView.adapter=MachineRecyclerAdapter(machines)
+        //recyclerView.adapter=MachineRecyclerAdapter(machines)
     }
 
 

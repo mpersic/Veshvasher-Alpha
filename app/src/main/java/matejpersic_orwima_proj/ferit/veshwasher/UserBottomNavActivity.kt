@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class UserBottomNavActivity : AppCompatActivity() {
+class UserBottomNavActivity : AppCompatActivity(),UserFragmentCommunicator {
     lateinit var  userUsingMachinesFragment: UserUsingMachinesFragment
     lateinit var userBrowseMachinesFragment: UserBrowseMachinesFragment
     lateinit var userLogOutFragment: UserLogOutFragment
@@ -51,5 +51,11 @@ class UserBottomNavActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    override fun onButtonClicked(Email: String) {
+
+       // machinesFragment=adapter.getMachineFragment(handler)
+        //machinesFragment.displayMachine(machineName,machineProgramme)
     }
 }

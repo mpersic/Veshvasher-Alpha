@@ -2,6 +2,8 @@ package matejpersic_orwima_proj.ferit.veshwasher
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +11,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
 
 
-class AddMachineFragment(dbHelper:DatabaseHelper) : Fragment() {
+class AddMachineFragment(dbHelper:DatabaseHelper) : Fragment(),TextWatcher {
 
-    var fc:FragmentCommunicator?=null
+    var fc:AdminFragmentCommunicator?=null
     var databaseHelper:DatabaseHelper=dbHelper
     lateinit var machineName:TextView
     lateinit var machineProgram:TextView
     lateinit var addMachineButton: Button
-    private lateinit var communicator: FragmentCommunicator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,14 +49,35 @@ class AddMachineFragment(dbHelper:DatabaseHelper) : Fragment() {
                     machineProgram.text.toString(),
                     "1"
                 )
-                //fc.onButtonClicked(machineName.text.toString(),
-                  //                 machineProgram.text.toString())
-                //TODO treba stavit da ide na fragment 0 i da ga rekreira, navodno kao na lvu
+                fc!!.onButtonClicked(machineName.text.toString(),
+                                machineProgram.text.toString())
                 machineName.text=""
                 machineProgram.text=""
             }
         }
         //machineName.addTextChangedListener(context)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is AdminFragmentCommunicator)
+        {
+            fc = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        fc=null
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    }
+
+    override fun afterTextChanged(s: Editable?) {
     }
 
 }

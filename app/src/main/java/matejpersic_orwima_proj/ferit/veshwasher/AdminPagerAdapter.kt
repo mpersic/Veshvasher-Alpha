@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 class AdminPagerAdapter(fm: FragmentManager, var totalTabs: Int,var dbHelper:DatabaseHelper) :
 FragmentPagerAdapter(fm) {
-    private lateinit var addMachineFragment:AddMachineFragment
+    private var addMachineFragment:AdminMachinesFragment?=null
     override fun getCount(): Int {
         return totalTabs
     }
@@ -14,7 +14,9 @@ FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                AdminMachinesFragment(dbHelper)
+                if(addMachineFragment==null)
+                addMachineFragment= AdminMachinesFragment(dbHelper)
+                return addMachineFragment as AdminMachinesFragment
             }
             1 ->{
                    AddMachineFragment(dbHelper)
@@ -26,6 +28,6 @@ FragmentPagerAdapter(fm) {
         }
     }
     fun getMachineFragment(dbHelper: DatabaseHelper):AdminMachinesFragment{
-        return AdminMachinesFragment(dbHelper)
+       return addMachineFragment!!
     }
 }
