@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 
 class UserMachineRecyclerAdapter (var machines: ArrayList<Machine>,var databaseHelper: DatabaseHelper,var email:String) :
@@ -14,6 +17,7 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
         var machineProgramme: TextView = itemView.findViewById(R.id.userMachineProgramme)
         var userEmail:String=email
         var dbHelper=databaseHelper
+        var userFragmentCommunicator:UserFragmentCommunicator?=null
         //var removeMachine: ImageView =itemView.findViewById(R.id.removeMachineImage)
         init {
 
@@ -21,7 +25,7 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
                 var position: Int = adapterPosition
                 if (machines.size > position) {
                     databaseHelper.insertIsUsing(machines[position].name,userEmail)
-                    //TODO treba osvježiti fragment usingfragment
+                    userFragmentCommunicator?.onButtonClicked(userEmail)
                     machines.removeAt(position)
                     notifyItemRemoved(position)
                 }

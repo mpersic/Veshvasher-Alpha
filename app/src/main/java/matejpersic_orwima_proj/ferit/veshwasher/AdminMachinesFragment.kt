@@ -18,8 +18,6 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
     private var machines: ArrayList<Machine> = arrayListOf()
     private var databaseHelper:DatabaseHelper=dbHelper
     private lateinit var recyclerView:RecyclerView
-    var machineName:String?=""
-    var machineProgramme:String?=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,8 +49,8 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
 
     fun displayMachine(Name:String,Program:String) {
         databaseHelper.insertMachine(Name,Program,"1")
-        displayData()
-        //recyclerView.adapter=MachineRecyclerAdapter(machines)
+        machines.add(Machine(Name,Program))
+        //displayData()
     }
 
 
