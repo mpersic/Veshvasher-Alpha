@@ -53,12 +53,10 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
         }
     }
 
-
-    private fun addMachines() {
-        databaseHelper.insertMachine("Gorenje","1","1")
-        databaseHelper.insertMachine("Gorenje 5","1","1")
-        machines.add(Machine("Gorenje 12","1"))
-        machines.add(Machine("Gorenje 123","4"))
+    fun displayMachine(machine: Machine) {
+        machines.add(machine)
+        displayData()
     }
+
 
 }

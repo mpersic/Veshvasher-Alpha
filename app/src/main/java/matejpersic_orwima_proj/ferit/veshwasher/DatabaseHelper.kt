@@ -64,16 +64,26 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
         insertIsUsing("Gorenje 2","plenart@gmail.com")
     }
 
-    private fun insertIsUsing(machine:String, user:String) {
+     fun insertIsUsing(machineName:String, user:String) {
         val db: SQLiteDatabase=writableDatabase
         val values: ContentValues= ContentValues()
-        values.put("machineID",machine)
+        values.put("machineID",machineName)
         values.put("userID",user)
         db.insert("isUsing",null,values)
         db.close()
+         updateMachine(machineName)
     }
 
-     fun readAllMachines(): Cursor {
+    private fun updateMachine(name: String) {
+        //TODO treba popravit da postavlja vrijednost mašine na 0
+        val available="0"
+        val db=writableDatabase
+        val query="UPDATE machines SET available='$available' WHERE name='$name' "
+        val cursor=db.rawQuery(query,null)
+        cursor.close()
+    }
+
+    fun readAllMachines(): Cursor {
         val query:String="SELECT * FROM machines"
          val db:SQLiteDatabase=readableDatabase
          var cursor:Cursor?=null
@@ -98,8 +108,4 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
         return cursor
 
     }
-    /* private fun readAllUserMachines():Cursor{
-         //TODO
-         return null
-     }*/
 }

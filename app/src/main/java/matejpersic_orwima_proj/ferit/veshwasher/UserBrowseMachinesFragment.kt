@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 class UserBrowseMachinesFragment(dbHelper:DatabaseHelper) : Fragment() {
     private var helper=dbHelper
     private var machines: ArrayList<Machine> = arrayListOf()
+    lateinit var recyclerAdapter:UserMachineRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +28,9 @@ class UserBrowseMachinesFragment(dbHelper:DatabaseHelper) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView =view.findViewById(R.id.userMachinesRecyclerView)
         recyclerView.layoutManager= LinearLayoutManager(context)
+        recyclerAdapter= UserMachineRecyclerAdapter(machines,helper,"plenart@gmail.com")
         //addMachines()
-        recyclerView.adapter=UserMachineRecyclerAdapter(machines)
+        recyclerView.adapter=recyclerAdapter
         //helper.initialValues()
         //helper.clearAll()
         displayData()

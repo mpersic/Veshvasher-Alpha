@@ -14,18 +14,18 @@ FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                WorkersFragment()
-            }
-            1 -> {
                 AdminMachinesFragment(dbHelper)
             }
-            2 ->{
+            1 ->{
                    AddMachineFragment(dbHelper)
             }
-            3->{
+            2->{
                 UserLogOutFragment()
             }
-            else -> return WorkersFragment()
+            else -> return AdminMachinesFragment(dbHelper)
         }
+    }
+    public fun getMachineFragment(dbHelper: DatabaseHelper):AdminMachinesFragment{
+        return AdminMachinesFragment(dbHelper)
     }
 }

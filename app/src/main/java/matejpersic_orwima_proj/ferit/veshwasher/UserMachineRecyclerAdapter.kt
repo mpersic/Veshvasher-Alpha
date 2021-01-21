@@ -7,16 +7,25 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class UserMachineRecyclerAdapter (private var machines: List<Machine>) :
+class UserMachineRecyclerAdapter (var machines: ArrayList<Machine>,var databaseHelper: DatabaseHelper,var email:String) :
 RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
-    inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
-        var machineName: TextView =itemView.findViewById(R.id.userMachineName)
-        var machineProgramme: TextView =itemView.findViewById(R.id.userMachineProgramme)
+    inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
+        var machineName: TextView = itemView.findViewById(R.id.userMachineName)
+        var machineProgramme: TextView = itemView.findViewById(R.id.userMachineProgramme)
+        var userEmail:String=email
+        var dbHelper=databaseHelper
         //var removeMachine: ImageView =itemView.findViewById(R.id.removeMachineImage)
         init {
-           /* removeMachine.setOnClickListener{
-                //TODO
-            }*/
+
+            itemView.setOnClickListener {
+                var position: Int = adapterPosition
+                if (machines.size > position) {
+                    databaseHelper.insertIsUsing(machines[position].name,userEmail)
+                    //TODO treba stavit da je mašina neaktivna
+                    machines.removeAt(position)
+                    notifyItemRemoved(position)
+                }
+            }
         }
     }
 
@@ -33,6 +42,6 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.machineName.text=machines[position].name
         holder.machineProgramme.text=machines[position].programme
-        //holder.removeMachine.setImageResource(R.drawable.err)
     }
+
 }

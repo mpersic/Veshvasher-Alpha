@@ -22,6 +22,7 @@ class UserUsingMachinesFragment(userEmail:String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO treba izračunar koliko korisnik mašina koristi i pozdravit ga
         userEmailTextView=view.findViewById(R.id.usingMachinesUser)
         userEmailTextView.text = email
     }

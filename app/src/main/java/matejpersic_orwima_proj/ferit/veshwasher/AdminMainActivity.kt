@@ -10,11 +10,12 @@ import java.io.Serializable
 
 class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
     var tabLayout: TabLayout?=null
-    var viewPager: ViewPager?=null
-    var pagerAdapter: AdminPagerAdapter?=null
+    lateinit var viewPager: ViewPager
+    lateinit var adapter:AdminPagerAdapter
     lateinit var userEmail:String
     lateinit var userPassword:String
     lateinit var handler: DatabaseHelper
+    var machinesFragment:AdminMachinesFragment?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
@@ -32,16 +33,15 @@ class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
     }
     private fun setUpPager(handler:DatabaseHelper) {
         //!! is non null
-        tabLayout!!.addTab(tabLayout!!.newTab().setText("Employees"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Machines"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Add machine"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Log out"))
-        val adapter=AdminPagerAdapter(supportFragmentManager, tabLayout!!.tabCount,handler)
-        viewPager!!.adapter=adapter
-        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        adapter=AdminPagerAdapter(supportFragmentManager, tabLayout!!.tabCount,handler)
+        viewPager.adapter=adapter
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewPager!!.currentItem=tab!!.position
+                viewPager.currentItem=tab!!.position
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -53,7 +53,15 @@ class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
         viewPager = findViewById(R.id.AdminViewPager)
     }
 
-    override fun passNewMachine(machine: Machine) {
+    override fun onButtonClicked() {
+        viewPager.currentItem =0
+        //machinesFragment=adapter.getMachineFragment(handler)
+        //machinesFragment!!.displayMachine(machine)
+    }
+
+
+    //,fragmentcommunicator
+    /*override fun passNewMachine(machine: Machine) {
         val bundle=Bundle()
         bundle.putString("machineName",machine.name)
         bundle.putString("machineProgramme",machine.programme)
@@ -63,6 +71,6 @@ class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
 
         transaction.replace(R.id.AdminViewPager,fragmentAdminMachinesFragment)
         transaction.commit()
-    }
+    }*/
 
 }
