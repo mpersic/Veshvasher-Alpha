@@ -15,7 +15,7 @@ class MachineRecyclerAdapter(private var machines: List<Machine>) :
         var removeMachine: ImageView =itemView.findViewById(R.id.removeMachineImage)
         init {
             removeMachine.setOnClickListener{
-                //TODO
+
             }
         }
     }

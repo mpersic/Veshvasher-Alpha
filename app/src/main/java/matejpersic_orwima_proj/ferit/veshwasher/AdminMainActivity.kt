@@ -53,10 +53,10 @@ class AdminMainActivity : AppCompatActivity(),FragmentCommunicator {
         viewPager = findViewById(R.id.AdminViewPager)
     }
 
-    override fun onButtonClicked() {
-        viewPager.currentItem =0
-        //machinesFragment=adapter.getMachineFragment(handler)
-        //machinesFragment!!.displayMachine(machine)
+    override fun onButtonClicked(machineName:String,machineProgramme:String) {
+        //viewPager.currentItem =0
+        machinesFragment=adapter.getMachineFragment(handler)
+        machinesFragment!!.displayMachine(machineName,machineProgramme)
     }
 
 

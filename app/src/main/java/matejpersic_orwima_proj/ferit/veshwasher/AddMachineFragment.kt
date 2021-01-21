@@ -49,7 +49,8 @@ class AddMachineFragment(dbHelper:DatabaseHelper) : Fragment() {
                     machineProgram.text.toString(),
                     "1"
                 )
-                //fc!!.onButtonClicked()
+                //fc.onButtonClicked(machineName.text.toString(),
+                  //                 machineProgram.text.toString())
                 //TODO treba stavit da ide na fragment 0 i da ga rekreira, navodno kao na lvu
                 machineName.text=""
                 machineProgram.text=""

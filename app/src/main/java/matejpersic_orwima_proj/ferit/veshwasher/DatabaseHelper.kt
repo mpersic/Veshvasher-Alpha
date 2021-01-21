@@ -79,8 +79,7 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
         val available="0"
         val db=writableDatabase
         val query="UPDATE machines SET available='$available' WHERE name='$name' "
-        val cursor=db.rawQuery(query,null)
-        cursor.close()
+        db.execSQL(query)
     }
 
     fun readAllMachines(): Cursor {

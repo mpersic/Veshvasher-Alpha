@@ -25,7 +25,7 @@ FragmentPagerAdapter(fm) {
             else -> return AdminMachinesFragment(dbHelper)
         }
     }
-    public fun getMachineFragment(dbHelper: DatabaseHelper):AdminMachinesFragment{
+    fun getMachineFragment(dbHelper: DatabaseHelper):AdminMachinesFragment{
         return AdminMachinesFragment(dbHelper)
     }
 }

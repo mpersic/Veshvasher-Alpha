@@ -21,7 +21,7 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
                 var position: Int = adapterPosition
                 if (machines.size > position) {
                     databaseHelper.insertIsUsing(machines[position].name,userEmail)
-                    //TODO treba stavit da je mašina neaktivna
+                    //TODO treba osvježiti fragment usingfragment
                     machines.removeAt(position)
                     notifyItemRemoved(position)
                 }

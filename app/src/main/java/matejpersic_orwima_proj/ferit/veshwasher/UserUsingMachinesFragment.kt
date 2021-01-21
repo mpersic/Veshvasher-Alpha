@@ -35,7 +35,7 @@ class UserUsingMachinesFragment(userEmail:String,dbHelper: DatabaseHelper) : Fra
         userMachineNumber.text = number.toString()
     }
 
-    fun countMachines(userID: String) {
+    private fun countMachines(userID: String) {
         var counter: Int = 0
         val cursor: Cursor = helper.readAllMachinesUserIsUsing(userID)
         while (cursor.moveToNext()) {

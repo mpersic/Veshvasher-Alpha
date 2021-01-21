@@ -17,6 +17,7 @@ import java.io.Serializable
 class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
     private var machines: ArrayList<Machine> = arrayListOf()
     private var databaseHelper:DatabaseHelper=dbHelper
+    private lateinit var recyclerView:RecyclerView
     var machineName:String?=""
     var machineProgramme:String?=""
     override fun onCreateView(
@@ -28,15 +29,10 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView: RecyclerView =view.findViewById(R.id.machinesRecyclerView)
+        recyclerView =view.findViewById(R.id.machinesRecyclerView)
         recyclerView.layoutManager= LinearLayoutManager(context)
         //addMachines()
         //databaseHelper.initialValues()
-        /*machineName=arguments?.getString("machineName")
-        machineProgramme=arguments?.getString("machineProgramme")
-        if((machineName?.isNotEmpty() as Boolean)||(machineProgramme?.isNotEmpty() as Boolean)) {
-            machines.add(Machine(machineName as String, machineProgramme as String))
-        }*/
         displayData()
         recyclerView.adapter=MachineRecyclerAdapter(machines)
     }
@@ -53,9 +49,10 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable 
         }
     }
 
-    fun displayMachine(machine: Machine) {
-        machines.add(machine)
+    fun displayMachine(Name:String,Program:String) {
+        databaseHelper.insertMachine(Name,Program,"1")
         displayData()
+        recyclerView.adapter=MachineRecyclerAdapter(machines)
     }
 
 
