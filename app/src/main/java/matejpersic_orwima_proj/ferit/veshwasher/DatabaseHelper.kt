@@ -91,6 +91,14 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
          return cursor
     }
 
+    fun readAllMachinesUserIsUsing(userID:String): Cursor {
+        val query:String="SELECT * FROM isUsing WHERE userID='$userID'"
+        val db:SQLiteDatabase=readableDatabase
+        var cursor:Cursor?=null
+        cursor=db.rawQuery(query,null)
+        return cursor
+    }
+
     fun clearAll() {
         clearAllMachines()
     }

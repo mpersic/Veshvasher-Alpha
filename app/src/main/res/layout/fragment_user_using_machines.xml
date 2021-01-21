@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_200"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserUsingMachinesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:textSize="30dp"
+        android:textColor="@color/black"
         android:id="@+id/usingMachinesHello"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HELLO" />
     <TextView
+        android:textSize="15dp"
         android:layout_below="@id/usingMachinesHello"
         android:id="@+id/usingMachinesUser"
         android:layout_centerInParent="true"
@@ -29,8 +32,16 @@
     <TextView
         android:layout_below="@id/usingMachinesUsing"
         android:id="@+id/usingMachinesNumber"
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x machines!" />
+        android:text="x" />
+    <TextView
+        android:layout_below="@id/usingMachinesNumber"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="machines!"
+        android:layout_height="wrap_content"></TextView>
 </RelativeLayout>

@@ -52,9 +52,8 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
     private fun startUserActivity(loginEmail:String,loginPassword:String) {
         activity?.let {
             val intent= Intent(it,UserBottomNavActivity::class.java)
-            var args:Bundle= Bundle()
-            args.putString("Email",loginEmail)
-            args.putString("Password",loginPassword)
+            intent.putExtra("Email",loginEmail)
+            intent.putExtra("Password",loginPassword)
             startActivity(intent)
         }
     }
@@ -62,9 +61,8 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
     private fun startAdminActivity(loginEmail:String,loginPassword:String) {
         activity?.let {
             val intent= Intent(it,AdminMainActivity::class.java)
-            var args:Bundle= Bundle()
-            args.putString("Email",loginEmail)
-            args.putString("Password",loginPassword)
+            intent.putExtra("Email",loginEmail)
+            intent.putExtra("Password",loginPassword)
             startActivity(intent)
         }
     }
