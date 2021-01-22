@@ -75,7 +75,6 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
     }
 
     private fun updateMachine(name: String) {
-        //TODO treba popravit da postavlja vrijednost mašine na 0
         val available="0"
         val db=writableDatabase
         val query="UPDATE machines SET available='$available' WHERE name='$name' "
@@ -98,17 +97,9 @@ class DatabaseHelper(context: Context):SQLiteOpenHelper(context,dbname,factory, 
         return cursor
     }
 
-    fun clearAll() {
-        clearAllMachines()
-    }
-
-    private fun clearAllMachines() {
-        TODO("Not yet implemented")
-    }
-
     fun readAllAvailableMachines(): Cursor {
-        val available:String="1"
-        val query:String="SELECT * FROM machines WHERE available=$available"
+        val available ="1"
+        val query ="SELECT * FROM machines WHERE available=$available"
         val db:SQLiteDatabase=readableDatabase
         var cursor:Cursor?=null
         cursor=db.rawQuery(query,null)

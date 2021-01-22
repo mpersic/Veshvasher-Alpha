@@ -24,7 +24,7 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
             itemView.setOnClickListener {
                 var position: Int = adapterPosition
                 if (machines.size > position) {
-                    databaseHelper.insertIsUsing(machines[position].name,userEmail)
+                    dbHelper.insertIsUsing(machines[position].name,userEmail)
                     userFragmentCommunicator?.onButtonClicked(userEmail)
                     machines.removeAt(position)
                     notifyItemRemoved(position)

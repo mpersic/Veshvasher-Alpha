@@ -12,12 +12,6 @@ class MachineRecyclerAdapter(private var machines: List<Machine>) :
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
         var machineName: TextView =itemView.findViewById(R.id.machineName)
         var machineProgramme: TextView =itemView.findViewById(R.id.machineProgramme)
-        var removeMachine: ImageView =itemView.findViewById(R.id.removeMachineImage)
-        init {
-            removeMachine.setOnClickListener{
-
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{

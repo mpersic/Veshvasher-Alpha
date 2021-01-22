@@ -37,10 +37,10 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
         loginButton!!.setOnClickListener {
             if(databaseHelper!!.userPresent(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())){
                 if(userIsAdmin()){
-                    startAdminActivity(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())
+                    startAdminActivity()
                 }
                 else{
-                    startUserActivity(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())
+                    startUserActivity(loginEmailEt!!.text.toString())
                 }
             }
             else
@@ -49,20 +49,17 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
             Toast.makeText(activity,"Invalid credentials!",Toast.LENGTH_SHORT).show()
         }
 
-    private fun startUserActivity(loginEmail:String,loginPassword:String) {
+    private fun startUserActivity(loginEmail:String) {
         activity?.let {
             val intent= Intent(it,UserBottomNavActivity::class.java)
             intent.putExtra("Email",loginEmail)
-            intent.putExtra("Password",loginPassword)
             startActivity(intent)
         }
     }
 
-    private fun startAdminActivity(loginEmail:String,loginPassword:String) {
+    private fun startAdminActivity() {
         activity?.let {
             val intent= Intent(it,AdminMainActivity::class.java)
-            intent.putExtra("Email",loginEmail)
-            intent.putExtra("Password",loginPassword)
             startActivity(intent)
         }
     }

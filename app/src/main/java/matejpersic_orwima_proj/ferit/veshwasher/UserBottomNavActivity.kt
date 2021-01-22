@@ -21,9 +21,10 @@ class UserBottomNavActivity : AppCompatActivity(),UserFragmentCommunicator {
 
 
         userEmail= intent.getStringExtra("Email").toString()
+        //Toast.makeText(this,userEmail,Toast.LENGTH_LONG).show()
         handler= DatabaseHelper(this)
         //initializing default framgent
-        userBrowseMachinesFragment= UserBrowseMachinesFragment(handler)
+        userBrowseMachinesFragment= UserBrowseMachinesFragment(handler,userEmail)
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout,userBrowseMachinesFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
@@ -38,7 +39,7 @@ class UserBottomNavActivity : AppCompatActivity(),UserFragmentCommunicator {
                         .commit()
                 }
                 R.id.availableMachines->{
-                    userBrowseMachinesFragment= UserBrowseMachinesFragment(handler)
+                    userBrowseMachinesFragment= UserBrowseMachinesFragment(handler,userEmail)
                     supportFragmentManager.beginTransaction().replace(R.id.frame_layout, userBrowseMachinesFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
@@ -54,6 +55,10 @@ class UserBottomNavActivity : AppCompatActivity(),UserFragmentCommunicator {
     }
 
     override fun onButtonClicked(Email: String) {
+       // userUsingMachinesFragment= UserUsingMachinesFragment(userEmail,handler)
+        //supportFragmentManager.beginTransaction().replace(R.id.frame_layout, userBrowseMachinesFragment)
+            //    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+             //   .commit()
         var frg: Fragment = supportFragmentManager.findFragmentByTag(findViewById(R.id.MachinesUser))!!
         val ft = supportFragmentManager.beginTransaction()
         ft.detach(frg)

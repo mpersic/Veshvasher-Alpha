@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class UserBrowseMachinesFragment(dbHelper:DatabaseHelper) : Fragment() {
+class UserBrowseMachinesFragment(dbHelper:DatabaseHelper,userEmail:String) : Fragment() {
     private var helper=dbHelper
     private var machines: ArrayList<Machine> = arrayListOf()
     lateinit var recyclerAdapter:UserMachineRecyclerAdapter
+    private var email=userEmail
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,19 +29,14 @@ class UserBrowseMachinesFragment(dbHelper:DatabaseHelper) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView =view.findViewById(R.id.userMachinesRecyclerView)
         recyclerView.layoutManager= LinearLayoutManager(context)
-        recyclerAdapter= UserMachineRecyclerAdapter(machines,helper,"plenart@gmail.com")
+        recyclerAdapter= UserMachineRecyclerAdapter(machines,helper,email)
         //addMachines()
         recyclerView.adapter=recyclerAdapter
         //helper.initialValues()
         //helper.clearAll()
         displayData()
-        //addMachines()
     }
 
-    private fun addMachines() {
-        machines.add(Machine("Gorenje 12","1"))
-        machines.add(Machine("Gorenje 123","4"))
-    }
 
     private fun displayData(){
         val cursor: Cursor=helper.readAllAvailableMachines()

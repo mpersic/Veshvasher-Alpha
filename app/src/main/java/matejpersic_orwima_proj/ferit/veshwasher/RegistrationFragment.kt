@@ -35,7 +35,7 @@ class RegistrationFragment(dbHelper: DatabaseHelper) : Fragment() {
                     if (userIsAdmin())
                         startAdminActivity()
                     else
-                        startUserActivity()
+                        startUserActivity(registerEmail!!.text.toString())
                 }
             } else {
                 Toast.makeText(activity, "Passwords dont match!", Toast.LENGTH_SHORT).show()
@@ -43,9 +43,10 @@ class RegistrationFragment(dbHelper: DatabaseHelper) : Fragment() {
         }
     }
 
-    private fun startUserActivity() {
+    private fun startUserActivity(registerEmail:String) {
         activity?.let {
             val intent=Intent(it,UserBottomNavActivity::class.java)
+            intent.putExtra("Email",registerEmail)
             startActivity(intent)
         }
     }
@@ -53,7 +54,6 @@ class RegistrationFragment(dbHelper: DatabaseHelper) : Fragment() {
     private fun startAdminActivity() {
         activity?.let {
             val intent= Intent(it,AdminMainActivity::class.java)
-                    //  intent.putExtra("Object",databaseHelper)
             startActivity(intent)
         }
     }

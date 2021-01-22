@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 class UserUsingMachinesFragment(userEmail:String,dbHelper: DatabaseHelper) : Fragment() {
-
-    private var number = 0
+    private var number:Int = 0
     private var helper = dbHelper
     private var email = userEmail
 
@@ -27,7 +26,6 @@ class UserUsingMachinesFragment(userEmail:String,dbHelper: DatabaseHelper) : Fra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO treba izračunar koliko korisnik mašina koristi i pozdravit ga
         countMachines(email)
         userEmailTextView = view.findViewById(R.id.usingMachinesUser)
         userEmailTextView.text = email
@@ -36,7 +34,7 @@ class UserUsingMachinesFragment(userEmail:String,dbHelper: DatabaseHelper) : Fra
     }
 
     private fun countMachines(userID: String) {
-        var counter: Int = 0
+        var counter = 0
         val cursor: Cursor = helper.readAllMachinesUserIsUsing(userID)
         while (cursor.moveToNext()) {
             counter++

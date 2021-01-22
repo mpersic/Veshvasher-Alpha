@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.Serializable
 
-class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
+class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment() {
     private var machines: ArrayList<Machine> = arrayListOf()
     private var databaseHelper:DatabaseHelper=dbHelper
     private lateinit var recyclerView:RecyclerView
