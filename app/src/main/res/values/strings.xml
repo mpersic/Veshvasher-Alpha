@@ -26,4 +26,11 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="machine_name">machine name</string>
+    <string name="machine_programme">machine programme</string>
+    <string name="are_you_sure">Are you sure you want to remove this machine?</string>
+    <string name="cancel">cancel</string>
+    <string name="yes">yes</string>
+    <string name="viewMachines">View machines</string>
+    <string name="done_button">Done</string>
 </resources>

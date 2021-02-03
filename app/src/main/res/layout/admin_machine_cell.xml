@@ -18,12 +18,12 @@
             android:id="@+id/machineName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@string/machine_name" />
         <TextView
             android:layout_below="@+id/employeeName"
             android:layout_margin="5dp"
             android:id="@+id/machineProgramme"
-            android:text="@string/hello_blank_fragment"
+            android:text="@string/machine_programme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
     </LinearLayout>

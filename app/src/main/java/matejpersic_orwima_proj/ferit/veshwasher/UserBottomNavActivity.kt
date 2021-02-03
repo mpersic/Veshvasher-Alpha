@@ -23,6 +23,7 @@ class UserBottomNavActivity : AppCompatActivity(),UserFragmentCommunicator {
         userEmail= intent.getStringExtra("Email").toString()
         //Toast.makeText(this,userEmail,Toast.LENGTH_LONG).show()
         handler= DatabaseHelper(this)
+        //handler.initialValues()
         //initializing default framgent
         userBrowseMachinesFragment= UserBrowseMachinesFragment(handler,userEmail)
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout,userBrowseMachinesFragment)

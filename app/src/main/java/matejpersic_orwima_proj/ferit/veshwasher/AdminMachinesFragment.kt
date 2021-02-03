@@ -29,7 +29,6 @@ class AdminMachinesFragment(dbHelper: DatabaseHelper) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView =view.findViewById(R.id.machinesRecyclerView)
         recyclerView.layoutManager= LinearLayoutManager(context)
-        //addMachines()
         //databaseHelper.initialValues()
         displayData()
         recyclerView.adapter=MachineRecyclerAdapter(machines)

@@ -18,7 +18,6 @@ RecyclerView.Adapter<UserMachineRecyclerAdapter.ViewHolder>() {
         var userEmail:String=email
         var dbHelper=databaseHelper
         var userFragmentCommunicator:UserFragmentCommunicator?=null
-        //var removeMachine: ImageView =itemView.findViewById(R.id.removeMachineImage)
         init {
 
             itemView.setOnClickListener {

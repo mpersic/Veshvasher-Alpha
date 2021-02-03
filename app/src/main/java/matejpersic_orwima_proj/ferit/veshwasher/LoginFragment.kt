@@ -35,7 +35,7 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
 
     private fun setUpListeners() {
         loginButton!!.setOnClickListener {
-            if(databaseHelper!!.userPresent(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())){
+            if(databaseHelper.userPresent(loginEmailEt!!.text.toString(),loginPasswordEt!!.text.toString())){
                 if(userIsAdmin()){
                     startAdminActivity()
                 }
@@ -44,8 +44,10 @@ class LoginFragment(dbHelper: DatabaseHelper) : Fragment(),Serializable {
                 }
             }
             else
+                if(loginEmailEt!!.text.toString().trim() != ""&&loginPasswordEt!!.text.toString().trim() != "")
                 Toast.makeText(activity,"Invalid credentials!",Toast.LENGTH_SHORT).show()
         }
+        if(loginEmailEt!!.text.toString().trim() != ""&&loginPasswordEt!!.text.toString().trim() != "")
             Toast.makeText(activity,"Invalid credentials!",Toast.LENGTH_SHORT).show()
         }
 
